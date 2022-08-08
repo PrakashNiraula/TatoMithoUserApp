@@ -17,15 +17,24 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,45 +52,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB2uZJgiqF-BFEMp_024cjqjYSJx_X82nk',
-    appId: '1:749477721461:web:6ab9da1a562b8364d90f3c',
-    messagingSenderId: '749477721461',
-    projectId: 'foodie-c5e85',
-    authDomain: 'foodie-c5e85.firebaseapp.com',
-    databaseURL: 'https://foodie-c5e85.firebaseio.com',
-    storageBucket: 'foodie-c5e85.appspot.com',
-    measurementId: 'G-170WRHGC08',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA1E8CXh34zqmTYo1BzoQ7O8FJqs0A33-4',
-    appId: '1:749477721461:android:b416c0e1d0fb9098d90f3c',
-    messagingSenderId: '749477721461',
-    projectId: 'foodie-c5e85',
-    databaseURL: 'https://foodie-c5e85.firebaseio.com',
-    storageBucket: 'foodie-c5e85.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCWrJ9uIuVCxYjZpZ-3X8EH6s4txkDvLgA',
-    appId: '1:749477721461:ios:d32a47b43dc63ee3d90f3c',
-    messagingSenderId: '749477721461',
-    projectId: 'foodie-c5e85',
-    databaseURL: 'https://foodie-c5e85.firebaseio.com',
-    storageBucket: 'foodie-c5e85.appspot.com',
-    iosClientId: '749477721461-7mcv920t2cou6a6s7l7oc7l2j2krqmfk.apps.googleusercontent.com',
-    iosBundleId: 'com.sixamtech.stackFood',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCWrJ9uIuVCxYjZpZ-3X8EH6s4txkDvLgA',
-    appId: '1:749477721461:ios:73d6cd10b46e0549d90f3c',
-    messagingSenderId: '749477721461',
-    projectId: 'foodie-c5e85',
-    databaseURL: 'https://foodie-c5e85.firebaseio.com',
-    storageBucket: 'foodie-c5e85.appspot.com',
-    iosClientId: '749477721461-ooqn05smg383039oja4bus3mt7361skk.apps.googleusercontent.com',
-    iosBundleId: 'com.twentyfirsttech.tatomitho',
+    apiKey: 'AIzaSyDq62OjV_lcvgh6qposnwhWuecPy4ClwSI',
+    appId: '1:778059256599:android:a0df9f51af00bdbd635d52',
+    messagingSenderId: '778059256599',
+    projectId: 'tatomithonotifsystem',
+    storageBucket: 'tatomithonotifsystem.appspot.com',
   );
 }

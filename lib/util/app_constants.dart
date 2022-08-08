@@ -3,7 +3,7 @@ import 'package:efood_multivendor/util/images.dart';
 
 class AppConstants {
   static const String APP_NAME = 'TatoMitho';
-  static const double APP_VERSION = 5.7;
+  static const double APP_VERSION = 5.8;
 
  // static const String BASE_URL = 'https://tatomitho.online';
   //static const String BASE_URL = 'http://www.taatomitho.com/control';
