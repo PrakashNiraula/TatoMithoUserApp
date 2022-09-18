@@ -21,6 +21,7 @@ class RestaurantController extends GetxController implements GetxService {
   RestaurantModel _restaurantModel;
   List<Restaurant> _restaurantList;
   List<Restaurant> _popularRestaurantList;
+  List<Restaurant> _nightrestaurantlist;
   List<Restaurant> _latestRestaurantList;
   Restaurant _restaurant;
   List<Product> _restaurantProducts;
@@ -43,6 +44,7 @@ class RestaurantController extends GetxController implements GetxService {
   List<Restaurant> get restaurantList => _restaurantList;
   List<Restaurant> get popularRestaurantList => _popularRestaurantList;
   List<Restaurant> get latestRestaurantList => _latestRestaurantList;
+  List<Restaurant> get nightRestaurantList=>_nightrestaurantlist;
   Restaurant get restaurant => _restaurant;
   ProductModel get restaurantProductModel => _restaurantProductModel;
   ProductModel get restaurantSearchProductModel => _restaurantSearchProductModel;
@@ -97,6 +99,26 @@ class RestaurantController extends GetxController implements GetxService {
       if (response.statusCode == 200) {
         _popularRestaurantList = [];
         response.body.forEach((restaurant) => _popularRestaurantList.add(Restaurant.fromJson(restaurant)));
+      } else {
+        ApiChecker.checkApi(response);
+      }
+      update();
+    }
+  }
+  Future<void> getNightDelicacyRestaurantList(bool reload, String type, bool notify) async {
+
+    _type = type;
+    if(reload){
+      _nightrestaurantlist = null;
+    }
+    if(notify) {
+      update();
+    }
+    if(_nightrestaurantlist == null || reload) {
+      Response response = await restaurantRepo.getNightDelicacyRestaurantList(type);
+      if (response.statusCode == 200) {
+        _nightrestaurantlist = [];
+        response.body.forEach((restaurant) => _nightrestaurantlist.add(Restaurant.fromJson(restaurant)));
       } else {
         ApiChecker.checkApi(response);
       }

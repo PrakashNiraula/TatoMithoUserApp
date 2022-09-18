@@ -12,9 +12,15 @@ import 'package:efood_multivendor/view/screens/home/web/web_popular_food_view.da
 import 'package:efood_multivendor/view/screens/home/web/web_category_view.dart';
 import 'package:efood_multivendor/view/screens/home/web/web_campaign_view.dart';
 import 'package:efood_multivendor/view/screens/home/web/web_popular_restaurant_view.dart';
+import 'package:efood_multivendor/view/screens/home/web/web_search_field.dart';
 import 'package:efood_multivendor/view/screens/home/widget/filter_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../controller/search_controller.dart';
+import '../../../util/images.dart';
+import '../../base/custom_button.dart';
+import '../search/search_screen.dart';
 
 class WebHomeScreen extends StatefulWidget {
   final ScrollController scrollController;
@@ -25,6 +31,9 @@ class WebHomeScreen extends StatefulWidget {
 }
 
 class _WebHomeScreenState extends State<WebHomeScreen> {
+
+  SearchController searchController;
+  final TextEditingController texteditcontroller = TextEditingController();
   ConfigModel _configModel;
 
   @override
@@ -42,6 +51,41 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
       controller: widget.scrollController,
       physics: AlwaysScrollableScrollPhysics(),
       slivers: [
+        SliverToBoxAdapter(
+            child:  Container(
+              width: 1920,
+              height: 700,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image:AssetImage(Images.logo), fit: BoxFit.cover)),
+              child: Center(child: SizedBox(width:800, child: Row(children: [
+                SizedBox(width: Dimensions.PADDING_SIZE_SMALL),
+                Expanded(
+
+                    child: WebSearchField(
+                      hint: 'search_food_or_restaurant'.tr,
+                      controller: texteditcontroller,
+                    )),
+                CustomButton(
+                  onPressed:  (){
+                    Navigator.push(context, MaterialPageRoute(builder:(context) =>SearchScreen()));
+                  },
+                  buttonText: 'Search'.tr,
+                  transparent: false,
+                  width: 130,
+                ),
+              ]))),
+            )
+        ),
+
+
+
+
+        SliverToBoxAdapter(child: GetBuilder<BannerController>(builder: (bannerController) {
+          return bannerController.bannerImageList == null ? WebBannerView(bannerController: bannerController)
+              : bannerController.bannerImageList.length == 0 ? SizedBox() : WebBannerView(bannerController: bannerController);
+        })),
+
 
         SliverToBoxAdapter(child: GetBuilder<BannerController>(builder: (bannerController) {
           return bannerController.bannerImageList == null ? WebBannerView(bannerController: bannerController)

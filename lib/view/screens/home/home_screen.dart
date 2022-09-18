@@ -18,6 +18,8 @@ import 'package:efood_multivendor/view/base/paginated_list_view.dart';
 import 'package:efood_multivendor/view/base/product_view.dart';
 import 'package:efood_multivendor/view/base/web_menu_bar.dart';
 import 'package:efood_multivendor/view/screens/home/theme1/theme1_home_screen.dart';
+import 'package:efood_multivendor/view/screens/home/web/web_night_popular_restaurant_view.dart';
+import 'package:efood_multivendor/view/screens/home/web/web_popular_restaurant_view.dart';
 import 'package:efood_multivendor/view/screens/home/web_home_screen.dart';
 import 'package:efood_multivendor/view/screens/home/widget/filter_view.dart';
 import 'package:efood_multivendor/view/screens/home/widget/popular_food_view.dart';
@@ -194,6 +196,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     BannerView(),
                     CategoryView(),
                     _configModel.popularRestaurant == 1 ? PopularRestaurantView(isPopular: true) : SizedBox(),
+                    _configModel.popularRestaurant == 1 ? NightWebPopularRestaurantView(isPopular: false) : SizedBox(),
+
                     ItemCampaignView(),
                     _configModel.popularFood == 1 ? PopularFoodView(isPopular: true) : SizedBox(),
                     _configModel.newRestaurant == 1 ? PopularRestaurantView(isPopular: false) : SizedBox(),
